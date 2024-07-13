@@ -16,14 +16,19 @@ config({ path: "./config/config.env" });
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL],
-    method: ["GET", "POST", "DELETE", "PUT"],
-    //get to fetch
-    //put to update
-    //post to save in database
-    //delete to delete 
+    method: ["GET", "HEAD" ,"POST", "DELETE", "PUT","OPTIONS"],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   })
+  
 );
+app.options('*', cors());
+
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  console.log('Headers:', req.headers);
+  next();
+});
 
 app.use(cookieParser());
 app.use(express.json());

@@ -1,5 +1,3 @@
-'use client';
-
 import { motion } from 'framer-motion';
 import getStartedImg from "../public/get-started.png"
 import styles from '../styles';

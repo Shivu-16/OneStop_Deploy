@@ -16,7 +16,11 @@ import MyApplications from "./components/Application/MyApplications";
 import PostJob from "./components/Job/PostJob";
 import NotFound from "./components/NotFound/NotFound";
 import MyJobs from "./components/Job/MyJobs";
-import LandingPage from './components/Landing/LandingPage'
+import ListOfCompanies from "./components/Job/ListOfCompanies";
+import LandingPage from "./components/Landing/LandingPage";
+import JobDataScrapper from "./components/Job/JobDataScrapper";
+import Profile from "./components/Auth/Profile";
+import MyMatchedJobs from "./components/Job/MyMatchedJobs";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
@@ -40,24 +44,30 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/job/getall" element={<Jobs />} />
-          <Route path="/job/:id" element={<JobDetails />} />
-          <Route path="/application/:id" element={<Application />} />
-          <Route path="/applications/me" element={<MyApplications />} />
-          <Route path="/job/post" element={<PostJob />} />
-          <Route path="/job/me" element={<MyJobs />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
-        <Toaster />
-      </BrowserRouter>
+      <div className="bg-primary-black">
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/Home" element={<Home />} />
+            <Route path="/job/getall" element={<Jobs />} />
+            <Route path="/job/myMatchedjobs" element={<MyMatchedJobs />} />
+            <Route path="/job/companyList" element={<ListOfCompanies />} />
+            <Route path="/user/getuser" element={<Profile />} />
+            <Route path="/job/:id" element={<JobDetails />} />
+            <Route path="/application/:id" element={<Application />} />
+            <Route path="/applications/me" element={<MyApplications />} />
+            <Route path="/job/post" element={<PostJob />} />
+            <Route path="/job/jobDataScrapper" element={<JobDataScrapper />} />
+            <Route path="/job/me" element={<MyJobs />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+          <Toaster />
+        </BrowserRouter>
+      </div>
     </>
   );
 };

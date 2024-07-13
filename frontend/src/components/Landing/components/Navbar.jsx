@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import styles from '../styles';
-import { navVariants } from '../utils/motion';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import styles from "../styles";
+import { navVariants } from "../utils/motion";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,8 +32,18 @@ const Navbar = () => {
           </h2>
         </div>
         <div className="md:flex items-center gap-8">
-          <a href="/login" className="font-extrabold text-[24px] leading-[30.24px] text-white ml-4">LOGIN</a>
-          <a href="/register" className="font-extrabold text-[24px] leading-[30.24px] text-white ml-4">REGISTER</a>
+          <a
+            href="/login"
+            className="font-extrabold text-[24px] leading-[30.24px] text-white ml-4"
+          >
+            LOGIN
+          </a>
+          <a
+            href="/register"
+            className="font-extrabold text-[24px] leading-[30.24px] text-white ml-4"
+          >
+            REGISTER
+          </a>
         </div>
         <div className="md:hidden">
           <img
@@ -46,8 +56,12 @@ const Navbar = () => {
       </div>
       {menuOpen && (
         <div className="md:hidden absolute top-16 right-6 bg-white p-4 rounded-lg shadow-lg z-10">
-          <a href="/login" className="block text-black mb-2">Login</a>
-          <a href="/register" className="block text-black">Register</a>
+          <a href="/login" className="block text-black mb-2">
+            Login
+          </a>
+          <a href="/register" className="block text-black">
+            Register
+          </a>
         </div>
       )}
     </motion.nav>

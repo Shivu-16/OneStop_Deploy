@@ -1,10 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    './src/components/landing/LandingPage.jsx',
-    './src/components/landing/components/**/*.{html,js,jsx}',
-    './src/components/landing/sections/**/*.{html,js,jsx}',
-    './src/components/landing/styles/**/*.{js,jsx}',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   mode: 'jit',
   theme: {
@@ -19,4 +17,5 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}
+

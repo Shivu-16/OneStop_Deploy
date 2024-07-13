@@ -1,8 +1,30 @@
-//login and creating user
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
+const jobDetailsSchema = new mongoose.Schema({
+  jobTitle: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  datePosted: { 
+    type: String,
+    required: true,
+  },
+  dateAddedToYourList: {
+    type: Date,
+    default: Date.now,
+  },
+  applied:{
+    type: String,
+    default: "Not-Applied",
+  }
+});
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -31,16 +53,25 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please select a role"],
     enum: ["Job Seeker", "Employer"],
-    //Employer ki jagah ham creator daal denge
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
+  keywords: {
+    type: [String],
+    default: [],
+  },
+  myCompanies: {
+    type: [String],
+    default: [],
+  },
+  myJobs: {
+    type: [jobDetailsSchema],
+    default: [],
+  },
 });
 
-
-//ENCRYPTING THE PASSWORD WHEN THE USER REGISTERS OR MODIFIES HIS PASSWORD
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next();
@@ -48,12 +79,10 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-//COMPARING THE USER PASSWORD ENTERED BY USER WITH THE USER SAVED PASSWORD
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-//GENERATING A JWT TOKEN WHEN A USER REGISTERS OR LOGINS, IT DEPENDS ON OUR CODE THAT WHEN DO WE NEED TO GENERATE THE JWT TOKEN WHEN THE USER LOGIN OR REGISTER OR FOR BOTH. 
 userSchema.methods.getJWTToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
     expiresIn: process.env.JWT_EXPIRES,

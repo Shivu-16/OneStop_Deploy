@@ -1,5 +1,3 @@
-'use client';
-
 import { motion } from 'framer-motion';
 import whatsNewImg from "../public/whats-new.png"
 import styles from '../styles';

@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 /frontend/node_modules
+/frontend-degraded
 /frontend/src/components/Landing/node_modules
 /backend/node_modules
 /backend/config
